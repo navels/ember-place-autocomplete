@@ -4,8 +4,10 @@ import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import { GooglePlaceAutocompleteMockedObject } from 'ember-place-autocomplete/test-support';
-import { render, find, settled } from '@ember/test-helpers';
+import {
+  GooglePlaceAutocompleteMockedObject
+} from 'ember-place-autocomplete/test-support';
+import { render, find } from '@ember/test-helpers';
 
 module('Integration | place-autocomplete-field', function(hooks) {
   setupRenderingTest(hooks);
@@ -14,13 +16,13 @@ module('Integration | place-autocomplete-field', function(hooks) {
     const fakeModel = EmberObject.create({ address: 'fake address'});
 
     await render(hbs`
-      {{place-autocomplete-field
-        placeholder='fake placeholder'
-        name='fake-name'
-        inputClass='fake-input-class'
-        value=fakeModel.address
-        data-independiente-medellin='what is that'
-      }}
+      <PlaceAutocompleteField
+        @placeholder='fake placeholder'
+        @name='fake-name'
+        @inputClass='fake-input-class'
+        @value={{fakeModel.address}}
+        @data-independiente-medellin='what is that'
+      />
     `);
 
     const inputElement = find('input');
@@ -44,13 +46,11 @@ module('Integration | place-autocomplete-field', function(hooks) {
     this.set('fakeModel', fakeModel);
 
     await render(hbs`
-      {{place-autocomplete-field
-        value=fakeModel.address
-        setValueWithProperty="formatted_address"
-      }}
+      <PlaceAutocompleteField
+        @value={{fakeModel.address}}
+        @setValueWithProperty='formatted_address'
+      />
     `);
-
-    await settled();
 
     assert.strictEqual(
       fakeModel.address,

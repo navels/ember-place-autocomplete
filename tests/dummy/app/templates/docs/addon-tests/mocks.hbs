@@ -1,7 +1,7 @@
 <h2 class="f2 mt0">Test Mocks</h2>
 <p>
   When writting acceptance tests for parts of an application that interact with
-  {{#code-inline}}place-autocomplete-field{{/code-inline}} or the service, it will be needed to mock Google's Autocomplete.
+  <CodeInline>place-autocomplete-field</CodeInline> or the service, it will be needed to mock Google's Autocomplete.
 </p>
 <p>
   The before each function of your acceptance/integration test is a good place to do it.
@@ -11,7 +11,7 @@
   <a
     href="https://github.com/dmuneras/ember-place-autocomplete/blob/master/addon-test-support/google-place-autocomplete-response-mock.js"
     target="_blank"
-    rel="noopener"
+    rel="noopener noreferrer"
   >
     mocked Google response
   </a>.
@@ -20,6 +20,6 @@
   The following example shows how to use the Mock with a Mocha as testing framework.
 </p>
 
-{{#docs-demo as |demo|}}
+<DocsDemo as |demo|>
   {{demo.snippet "tests-example.js" label="primary"}}
-{{/docs-demo}}
+</DocsDemo>

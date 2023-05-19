@@ -1,18 +1,33 @@
 module.exports = {
   root: true,
+  parser: '@babel/eslint-parser',
   parserOptions: {
-    ecmaVersion: 2017,
-    sourceType: 'module'
+    requireConfigFile: false,
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    babelOptions: {
+      babelrc: false,
+      configFile: false,
+      presets: ['@babel/preset-env'],
+      plugins: [
+        [
+          '@babel/plugin-proposal-decorators',
+          { decoratorsBeforeExport: false }
+        ],
+      ],
+    },
   },
   plugins: [
-    'ember'
+    'ember',
+    'es'
   ],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended'
   ],
   env: {
-    browser: true
+    browser: true,
+    es6: true
   },
   rules: {
   },
@@ -37,18 +52,13 @@ module.exports = {
       ],
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2015
       },
       env: {
         browser: false,
         node: true
       },
       plugins: ['node'],
-      rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
-        "node/no-extraneous-require": ["error", {
-          "allowModules": ["postcss-scss"]
-        }]
-      })
+      rules: {}
     }
   ]
 };

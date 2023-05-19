@@ -1,5 +1,5 @@
-{{#docs-viewer as |viewer|}}
-  {{#viewer.nav as |nav|}}
+<DocsViewer as |viewer|>
+  <viewer.nav as |nav|>
     <aside class="pt-16 main-sidebar">
       {{nav.item "Introduction" "docs.index"}}
       {{nav.item "Instalation" "docs.installation"}}
@@ -8,9 +8,9 @@
       {{nav.item "Usage | Service" "docs.usage.service"}}
       {{nav.item "Tests support" "docs.addon-tests.mocks"}}
     </aside>
-  {{/viewer.nav}}
+  </viewer.nav>
 
-  {{#viewer.main}}
+  <viewer.main>
     {{outlet}}
-  {{/viewer.main}}
-{{/docs-viewer}}
+  </viewer.main>
+</DocsViewer>

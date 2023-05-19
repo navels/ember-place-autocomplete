@@ -1,3 +1,4 @@
+{{! template-lint-disable no-action no-curly-component-invocation no-implicit-this }}
 <h2 class="text-3xl py-4">How to use as component</h2>
 <p class="py-4">
   When there is only a need to have an autocomplete text field to find an address, it is possible to
@@ -8,7 +9,7 @@
   <a
     href="https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform"
     target="_blank"
-    rel="noopener"
+    rel="noopener noreferrer"
     >
     here
   </a>
@@ -22,12 +23,12 @@
   This example assumes two actions are defined in the controller: <strong>done</strong> and <strong>placeChanged</strong>.
   The usage of <strong>model.address</strong> assumes that the current route loads an object with a property <strong>address</strong>, which is going to be set using the callback function provided.
 </p>
-{{#docs-demo as |demo|}}
+<DocsDemo as |demo|>
   {{demo.snippet "place-autocomplete-field.hbs" label="primary"}}
-{{/docs-demo}}
+</DocsDemo>
 
-{{#docs-demo as |demo|}}
-  {{#demo.example name="place-autocomplete-field.hbs"}}
+<DocsDemo as |demo|>
+  <demo.example @name="place-autocomplete-field.hbs">
     <p id="message">{{message}}</p>
     <p> Model address: {{model.address}}</p>
     <div class="test-place-autocomplete-container" data-google-auto={{googleAuto}}>
@@ -39,17 +40,17 @@
         @preventSubmit={{true}}
       />
     </div>
-  {{/demo.example}}
-{{/docs-demo}}
+  </demo.example>
+</DocsDemo>
 <p class="text-red-400 text-sm">
   Autocompletion could stop working on this example, because it uses a GOOGLE API KEY with limited number of request per day.
 </p>
 
 {{#if placeJSON}}
   <p>Google response</p>
-  {{#code-block language="js"}}
+  <CodeBlock @language="js">
     {{placeJSON}}
-  {{/code-block}}
+  </CodeBlock>
 {{/if}}
 
 <h4>Component usage with restrictions</h4>
@@ -57,12 +58,12 @@
   This place autocomplete field only returns places from Colombia. It happens because a restrictions object is
   being passed to the component using the restrictions property.
 </p>
-{{#docs-demo as |demo|}}
+<DocsDemo as |demo|>
   {{demo.snippet "place-autocomplete-field-with-restrictions.hbs" label="primary"}}
-{{/docs-demo}}
-{{#docs-demo as |demo|}}
-  {{#demo.example name="place-autocomplete-field-with-restrictions.hbs"}}
-    <p id="message">{{message}}</p>
+</DocsDemo>
+<DocsDemo as |demo|>
+  <demo.example @name="place-autocomplete-field-with-restrictions.hbs">
+    <p id="message-component">{{message}}</p>
     <p> Model address: {{model.address}}</p>
     <div class="test-place-autocomplete-container">
       <PlaceAutocompleteField
@@ -71,24 +72,24 @@
         @restrictions={{restrictions}}
       />
     </div>
-  {{/demo.example}}
-{{/docs-demo}}
+  </demo.example>
+</DocsDemo>
 <p class="text-red-400 text-sm">
   Autocompletion could stop working on this example, because it uses a GOOGLE API KEY with limited number of request per day.
 </p>
 {{#if placeJSONSecondInput}}
   <p>Google response</p>
-  {{#code-block language="js"}}
+  <CodeBlock @language="js">
     {{placeJSONSecondInput}}
-  {{/code-block}}
+  </CodeBlock>
 {{/if}}
 
-{{#docs-demo as |demo|}}
+<DocsDemo as |demo|>
   {{demo.snippet "application.js" label="controllers/application.js"}}
   {{demo.snippet "application.hbs" label="templates/application.hbs"}}
-{{/docs-demo}}
-{{#docs-demo as |demo|}}
-  {{#demo.example name="application.js" classNames="hidden"}}
+</DocsDemo>
+<DocsDemo as |demo|>
+  <demo.example @name="application.js" @classNames="hidden">
     import Controller from '@ember/controller';
 
     export default Controller.extend({
@@ -103,8 +104,8 @@
         }
       }
     });
-  {{/demo.example}}
-  {{#demo.example name="application.hbs"}}
+  </demo.example>
+  <demo.example @name="application.hbs">
     {{!-- MORE CODE HERE --}}
 
     <div class="test-place-autocomplete-container">
@@ -116,8 +117,8 @@
     </div>
 
     {{!-- MORE CODE HERE --}}
-  {{/demo.example}}
-{{/docs-demo}}
+  </demo.example>
+</DocsDemo>
 <h3 class="text-2xl py-4">Component options</h3>
 <table class="table-auto">
   <thead>
@@ -148,7 +149,7 @@
       <td class="border px-4 py-2">String</td>
       <td class="border px-4 py-2">
         featured types separate by comma describing the given result, for more info
-        <a href="https://developers.google.com/places/supported_types#table3" target="_blank" rel="noopener">here</a>
+        <a href="https://developers.google.com/places/supported_types#table3" target="_blank" rel="noopener noreferrer">here</a>
       </td>
     </tr>
     <tr class="striped--near-white">
@@ -159,7 +160,7 @@
         <a
           href="https://developers.google.com/maps/documentation/javascript/examples/geocoding-component-restriction"
           target="_blank"
-          rel="noopener">
+          rel="noopener noreferrer">
           here
         </a>
       </td>
@@ -172,7 +173,7 @@
         <a
           href="https://developers.google.com/maps/documentation/javascript/places-autocomplete#get_place_information"
           target="_blank"
-          rel="noopener">
+          rel="noopener noreferrer">
           here
         </a>
       </td>
@@ -185,7 +186,7 @@
         <a
           href="https://developers.google.com/maps/documentation/javascript/places-autocomplete#add_autocomplete"
           target="_blank"
-          rel="noopener">
+          rel="noopener noreferrer">
           See attribute options.bounds
         </a>
       </td>
@@ -198,7 +199,7 @@
         <a
           href="https://developers.google.com/maps/documentation/javascript/3.exp/reference#PlaceResult"
           target="_blank"
-          rel="noopener">
+          rel="noopener noreferrer">
           here
         </a>
       </td>
@@ -207,11 +208,11 @@
       <td class="border px-4 py-2">latLngBounds</td>
       <td class="border px-4 py-2">Object</td>
       <td class="border px-4 py-2">
-        Ex. <i>{sw: {lat: -34, lng: 151}, ne: {lat: -33, lng: 152}}</i>, It allows searching places near by the given coordinates. More info
+        Ex. <i>{sw: {lat: -34, lng: 151}, ne: {lat: -33, lng: 152} }</i>, It allows searching places near by the given coordinates. More info
         <a
           href="https://developers.google.com/maps/documentation/javascript/3.exp/reference#PlaceResult"
           target="_blank"
-          rel="noopener">
+          rel="noopener noreferrer">
           See attribute options.bounds
         </a>
       </td>
@@ -242,8 +243,8 @@
   In order to prevent double binding, it is possible to don't use the <i>value</i> and set the value using the action passed here.
 </p>
 <p>This is an example of the Google Place response that is going to be passed to the placeChangedCallback function</p>
-{{#docs-demo as |demo|}}
-  {{#demo.example name="payloadExample.js" classNames="hidden"}}
+<DocsDemo as |demo|>
+  <demo.example @name="payloadExample.js" @classNames="hidden">
     {
         "address_components": [
           {
@@ -380,6 +381,6 @@
         "vicinity": "Envigado",
         "html_attributions": []
       }
-  {{/demo.example}}
+  </demo.example>
   {{demo.snippet "payloadExample.js" label="payloadExample.js" language="js"}}
-{{/docs-demo}}
+</DocsDemo>

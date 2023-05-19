@@ -1,4 +1,9 @@
-import layout from '../templates/components/place-autocomplete-field';
+/* eslint-disable ember/no-component-lifecycle-hooks */
+/* eslint-disable ember/no-classic-components */
+/* eslint-disable ember/no-actions-hash */
+/* eslint-disable ember/require-tagless-components */
+/* eslint-disable ember/no-classic-classes */
+import layout from '../templates/place-autocomplete-field';
 import Component from '@ember/component';
 import { isArray } from '@ember/array';
 import {
@@ -26,9 +31,7 @@ export default Component.extend({
     return !!this.google;
   }),
 
-  isGoogleMapsAvailable: computed('isGoogleAvailable', function() {
-    return this.isGoogleAvailable && this.google.maps;
-  }),
+  isGoogleMapsAvailable: computed.and('isGoogleAvailable', 'google.maps'),
 
   /* HOOKS
   ---------------------------------------------------------------------------*/
@@ -54,23 +57,23 @@ export default Component.extend({
     this._bindDataAttributesToInput();
     this.setupComponent();
 
-    this.get('placeAutocompleteManagerService').register();
+    this.placeAutocompleteManagerService.register();
   },
 
   /**
    * @description Clean up component before removing it from the DOM
    */
   willDestroy() {
+    this._super(...arguments);
     if (isPresent(this.autocomplete)) {
       const google = this.google;
 
-      this.get('placeAutocompleteManagerService').unregister();
+      this.placeAutocompleteManagerService.unregister();
 
       if(google && google.maps && google.maps.event) {
         google.maps.event.clearInstanceListeners(this.autocomplete);
 
-        this
-          .get('placeAutocompleteManagerService')
+        this.placeAutocompleteManagerService
           .removePlacesAutoCompleteContainersIfRequired();
       }
     }
@@ -81,6 +84,7 @@ export default Component.extend({
    * updated options that have been passed into the component.
    */
   didReceiveAttrs() {
+    this._super();
     if (this.autocomplete) {
       this.autocomplete.setOptions(this.getOptions());
     }

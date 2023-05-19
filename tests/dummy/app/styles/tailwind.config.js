@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-undef
 module.exports = {
-  purge: [],
+  content: ['**/*.hbs'],
   theme: {
     container: {
       center: true,

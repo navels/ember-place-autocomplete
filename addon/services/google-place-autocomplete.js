@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-classes */
 import Service from '@ember/service';
 import { Promise as EmberPromise } from 'rsvp';
 import { isBlank } from '@ember/utils';
@@ -22,7 +23,7 @@ export default Service.extend({
   },
 
   getPlacePredictions(properties) {
-    if (!properties.hasOwnProperty('input')) {
+    if (!Object.prototype.hasOwnProperty.call(properties, 'input')) {
       return EmberPromise.reject(
         new Error('[service/google-place-autocomplete] input property was not passed inside properties object param')
       );
@@ -43,7 +44,7 @@ export default Service.extend({
   },
 
   getQueryPredictions(properties) {
-    if (!properties.hasOwnProperty('input')) {
+    if (!Object.prototype.hasOwnProperty.call(properties, 'input')) {
       return EmberPromise.reject(
         new Error('[service/google-place-autocomplete] input property was not passed inside properties object param')
       );
@@ -63,7 +64,7 @@ export default Service.extend({
 
   getDetails(request) {
     request.sessionToken = this.sessionToken;
-    if (!request.hasOwnProperty('fields') && !request.hasOwnProperty('placeId')) {
+    if (!Object.prototype.hasOwnProperty.call(request, 'fields') && !Object.prototype.hasOwnProperty.call(request, 'placeId')) {
       return EmberPromise.reject(
         new Error(
           '[service/google-place-autocomplete] getDetails needs the placeId and fields as properties of the request params'

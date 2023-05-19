@@ -1,9 +1,9 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-  name: DS.attr('string', {defaultValue: 'fake-name'}),
-  email: DS.attr('string',{defaultValue: 'fake-email'}),
-  address: DS.attr('string',{defaultValue: 'fake-address'}),
-  address2: DS.attr('string',{defaultValue: 'fake-address2'}),
-  address3: DS.attr('string',{defaultValue: 'fake-address3'})
-});
+export default class FakeModel extends Model {
+  @attr('string', { defaultValue: 'fake-name' }) name;
+  @attr('string', { defaultValue: 'fake-email' }) email;
+  @attr('string', { defaultValue: 'fake-address' }) address;
+  @attr('string', { defaultValue: 'fake-address2' }) address2;
+  @attr('string', { defaultValue: 'fake-address3' }) address3;
+}

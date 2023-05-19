@@ -4,7 +4,7 @@
       <h3 class="text-3xl py-4">Usage as component</h3>
       <p>This component is a input text field that fetches Google place predictions while the user is typing.</p>
       <p class="py-4">
-        More information: {{#link-to "docs.usage.component" class="no-underline hover:underline text-red-700 text-lg"}}here{{/link-to}}
+        More information: <LinkTo @route="docs.usage.component" class="no-underline hover:underline text-red-700 text-lg">here</LinkTo>
       </p>
     </li>
     <li>
@@ -17,13 +17,13 @@
         in order to reduce the cost of paid services when getting places information.
       </p>
       <p class="py-4">
-        More information: {{#link-to "docs.usage.service" class="no-underline hover:underline text-red-700 text-lg"}}here{{/link-to}}
+        More information: <LinkTo @route="docs.usage.service" class="no-underline hover:underline text-red-700 text-lg">here</LinkTo>
       </p>
     </li>
   </ul>
   <h2 class="text-3xl py-4">Issues</h2>
   <p>
-    You can report any issue you find <a href="https://github.com/dmuneras/ember-place-autocomplete/issues" target="_blank" rel="noopener">here</a>
+    You can report any issue you find <a href="https://github.com/dmuneras/ember-place-autocomplete/issues" target="_blank" rel="noopener noreferrer">here</a>
   </p>
   <p class="py-4">
     This addon provides two strategies to be able to communicate with Google place autocomplete services.

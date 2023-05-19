@@ -1,11 +1,10 @@
 import Service from '@ember/service';
 
-export default Service.extend({
-  init() {
-    this._super(...arguments);
-
-    this.set('numberOfActiveAutoCompleteFields', 0);
-  },
+export default class GooglePlaceAutocomplateManagerService extends Service {
+  constructor() {
+    super(...arguments);
+    this.numberOfActiveAutoCompleteFields = 0;
+  }
 
   /**
    * @description Increments the counter of active components.
@@ -13,8 +12,8 @@ export default Service.extend({
    * instanciated.
    */
   register() {
-    this.incrementProperty('numberOfActiveAutoCompleteFields');
-  },
+    this.numberOfActiveAutoCompleteFields += 1;
+  }
 
   /**
    * @description Decrements the counter of active components.
@@ -22,8 +21,8 @@ export default Service.extend({
    * going to be destroyed.
    */
   unregister() {
-    this.decrementProperty('numberOfActiveAutoCompleteFields');
-  },
+    this.numberOfActiveAutoCompleteFields -= 1;
+  }
 
   /**
    * @description Cleanup DOM when ALL component instances of place-autocomplete-field
@@ -43,5 +42,5 @@ export default Service.extend({
     }
 
     return true;
-  },
-});
+  }
+}

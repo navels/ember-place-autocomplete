@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-actions-hash */
+/* eslint-disable ember/no-classic-classes */
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { isBlank } from '@ember/utils';
@@ -11,7 +13,7 @@ export default Controller.extend({
       placeId: placeId,
       fields: ['address_components', 'formatted_address', 'place_id', 'rating']
     };
-    let placeDetails = await this.get('googlePlaceAutocompleteService').getDetails(googleRequest);
+    let placeDetails = await this.googlePlaceAutocompleteService.getDetails(googleRequest);
     this._refreshPrettyResponse(placeDetails);
   },
 
@@ -45,7 +47,7 @@ export default Controller.extend({
         this.setProperties({ predictions: [], placeServiceResultJSON: null });
       }
       let properties = { input: placeServiceInput };
-      let predictions = await this.get('googlePlaceAutocompleteService').getPlacePredictions(properties);
+      let predictions = await this.googlePlaceAutocompleteService.getPlacePredictions(properties);
       this.set('predictions', predictions);
     }
   }

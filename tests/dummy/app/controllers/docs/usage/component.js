@@ -1,36 +1,39 @@
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 import { later, next } from "@ember/runloop"
 
-export default Controller.extend({
-  init() {
-    this._super(...arguments);
-    this.setProperties({ googleAuto: null, restrictions: { country: 'co' } });
-  },
+export default class DocsUsageComponentController extends Controller {
+  constructor() {
+    super(...arguments);
+    this.googleAuto = null;
+    this.restrictions = { country: 'co' };
+  }
 
   _refreshPrettyResponse(blockProperty, placeDetails) {
-    this.set(blockProperty, null);
+    this.blockProperty = null;
     next(() => {
-      this.set(blockProperty, JSON.stringify(placeDetails, undefined, 2));
+      this.blockProperty = JSON.stringify(placeDetails, undefined, 2);
     });
-  },
-
-  actions: {
-    done() {
-      let messageElement = document.getElementById('message');
-      messageElement.classList.add('fade-in-element');
-      this.set('message', 'blur blur blur');
-      later(() => messageElement.classList.remove('fade-in-element'), 2000);
-      later(() => this.set('message', null), 2100);
-    },
-
-    placeChanged(place) {
-      this._refreshPrettyResponse('placeJSON', place);
-      this.set('googleAuto', 'done');
-      this.set('model.address', place.formatted_address);
-    },
-
-    placeChangedSecondInput(place) {
-      this._refreshPrettyResponse('placeJSONSecondInput', place);
-    }
   }
-});
+
+  @action
+  done() {
+    let messageElement = document.getElementById('message');
+    messageElement.classList.add('fade-in-element');
+    this.message = 'blur blur blur';
+    later(() => messageElement.classList.remove('fade-in-element'), 2000);
+    later(() => this.message = null, 2100);
+  }
+
+  @action
+  placeChanged(place) {
+    this._refreshPrettyResponse('placeJSON', place);
+    this.googleAuto = 'done';
+    this.model.address = place.formatted_address;
+  }
+
+  @action
+  placeChangedSecondInput(place) {
+    this._refreshPrettyResponse('placeJSONSecondInput', place);
+  }
+}
